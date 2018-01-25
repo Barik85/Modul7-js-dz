@@ -22,6 +22,23 @@ const keyboard = {
         this.creatKeys(this.topRow, ROWS[0]);
         this.creatKeys(this.midlleRow, ROWS[1]);
         this.creatKeys(this.bottomRow, ROWS[2]);
+        const SPACE = document.createElement('div');
+        SPACE.classList.add('key');
+        SPACE.style.width = "350px";
+        SPACE.innerHTML = " ";
+        keyboard.appendChild(SPACE);
+        const TYPEAREA = document.createElement('pre');
+        TYPEAREA.classList.add('type-area');
+        keyboard.before(TYPEAREA);
+        
+        const typing = (event) => {
+            let symbol = event.target.innerHTML;
+            if (event.target.classList.contains('key')){
+                TYPEAREA.textContent += symbol;
+            
+            }
+        };
+        keyboard.addEventListener('click', typing);
     }
 }
 keyboard.creatLayout();
